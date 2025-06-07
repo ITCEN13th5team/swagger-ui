@@ -645,6 +645,70 @@
         }
       }
     },
+    "/api/courses/{courseId}/like": {
+      "delete": {
+        "tags": [
+          "Course API"
+        ],
+        "summary": "코스 좋아요 취소 ",
+        "description": "사용자가 코스 좋아요를 취소합니다.",
+        "operationId": "unlikeCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "Course API"
+        ],
+        "summary": "코스 좋아요",
+        "description": "사용자가 코스를 좋아요합니다.",
+        "operationId": "likeCourse",
+        "parameters": [
+          {
+            "name": "courseId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/BaseResponseVoid"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/courses/{courseId}/description": {
       "patch": {
         "tags": [
@@ -1519,9 +1583,6 @@
           }
         }
       },
-      "GroupDetail": {
-        "type": "object"
-      },
       "RegisterBoardRequest": {
         "required": [
           "boardType",
@@ -1541,9 +1602,6 @@
               "NOTICE",
               "BASIC"
             ]
-          },
-          "groupDetail": {
-            "$ref": "#/components/schemas/GroupDetail"
           }
         },
         "description": "게시글 작성 요청 데이터"
@@ -1725,6 +1783,24 @@
         "properties": {
           "courseBase64": {
             "type": "string"
+          }
+        }
+      },
+      "BaseResponseVoid": {
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "code": {
+            "type": "string"
+          },
+          "message": {
+            "type": "string"
+          },
+          "data": {
+            "type": "object"
           }
         }
       },
